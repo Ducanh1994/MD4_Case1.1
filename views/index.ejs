@@ -52,12 +52,12 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">About</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-                    <li><a class="nav-link scrollto" href="#team">Team</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                    <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+                    <li><a class="nav-link scrollto" href="#about">Products</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Filter</a></li>
+                    <li><a class="nav-link scrollto " href="#portfolio">Search</a></li>
+                    <li><a class="nav-link scrollto" href="#team">Price</a></li>
+                    <li><a class="nav-link scrollto" href="#contact">Help</a></li>
+                    <li><a class="getstarted scrollto" href="#about">Sign Up</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -69,9 +69,9 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-        <h1>Your New Online Presence with Bethany</h1>
-        <h2>We are team of talented designers making websites with Bootstrap</h2>
-        <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        <h1>Your New Online Cosmetic Store</h1>
+        <h2>Welcome To Our Website</h2>
+        <a href="#about" class="btn-get-started scrollto">Login</a>
     </div>
 </section><!-- End Hero -->
 
@@ -84,21 +84,19 @@
             <div class="section-title" data-aos="fade-left">
                 <h2>Menu</h2>
             </div>
-
+            <% products.map(item => { %>
             <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                     <div >
                         <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                        <div><p>name<p></div>
-                        <div><p>Gia:<p></div>
-                        <div><p>Price:</p></div>
-                        <div><p>Quantity: 50</p></div>
+                        <div><p>Name:<%=item.name%><p></div>
+                        <div><p>Price:<%=item.price%><p></div>
+                        <div><p>Quantity:<%=item.quantity%></p></div>
+                        <div><p>Image:<%=item.image%></p></div>
                     </div>
                 </div>
-
             </div>
-
+            <% }) %>
         </div>
     </section><!-- End Portfolio Section -->
 
