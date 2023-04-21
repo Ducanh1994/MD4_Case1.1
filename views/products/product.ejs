@@ -44,7 +44,7 @@
     <div class="container">
         <div class="header-container d-flex align-items-center justify-content-between">
             <div class="logo">
-                <h1 class="text-light"><a href="/products"><span>Bethany</span></a></h1>
+                <h1 class="text-light"><a href="/products/admin"><span>Bethany</span></a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
@@ -56,8 +56,6 @@
                     <li><a class="nav-link scrollto" href="#services">Filter</a></li>
                     <li><a class="nav-link scrollto " href="#portfolio">Search</a></li>
                     <li><a class="nav-link scrollto" href="#team">Price</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Help</a></li>
-                    <li><a class="getstarted scrollto" href="#about">Sign Up</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -66,14 +64,6 @@
     </div>
 </header><!-- End Header -->
 
-<!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex align-items-center">
-    <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-        <h1>Your New Online Cosmetic Store</h1>
-        <h2>Welcome To Our Website</h2>
-        <a href="/products/admin" class="btn-get-started scrollto">Login</a>
-    </div>
-</section><!-- End Hero -->
 
 <main id="main">
 
@@ -82,8 +72,11 @@
         <div class="container">
 
             <div class="section-title" data-aos="fade-left">
-                <h2>Menu</h2>
+                <br>
+                <br>
+                <h2><a href="/products/admin/create">Create</a></h2>
             </div>
+
             <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
                 <% products.map(item => { %>
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
@@ -92,6 +85,8 @@
                         <div><p>Name:<%=item.name%><p></div>
                         <div><p>Price:<%=item.price%><p></div>
                         <div><p>Quantity:<%=item.quantity%></p></div>
+                        <button><a href="/products/admin/<%=item._id%>">Remove</a></button>
+                        <button><a href="/products/admin/edit/<%=item._id%>">Edit</a></button>
                     </div>
                 </div>
                 <% }) %>
@@ -104,30 +99,30 @@
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
         <div class="container">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
-                    </form>
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="col-md-6 form-group mt-3 mt-md-0">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                    </div>
                 </div>
-            </div>
+                <div class="form-group mt-3">
+                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                </div>
+                <div class="form-group mt-3">
+                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                </div>
+                <div class="my-3">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                </div>
+                <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+        </div>
+        </div>
 
         </div>
     </section><!-- End Contact Section -->

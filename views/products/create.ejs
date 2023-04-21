@@ -44,7 +44,7 @@
     <div class="container">
         <div class="header-container d-flex align-items-center justify-content-between">
             <div class="logo">
-                <h1 class="text-light"><a href="/products"><span>Bethany</span></a></h1>
+                <h1 class="text-light"><a href="/products/admin"><span>Bethany</span></a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
@@ -56,8 +56,6 @@
                     <li><a class="nav-link scrollto" href="#services">Filter</a></li>
                     <li><a class="nav-link scrollto " href="#portfolio">Search</a></li>
                     <li><a class="nav-link scrollto" href="#team">Price</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Help</a></li>
-                    <li><a class="getstarted scrollto" href="#about">Sign Up</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -66,68 +64,37 @@
     </div>
 </header><!-- End Header -->
 
-<!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex align-items-center">
-    <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-        <h1>Your New Online Cosmetic Store</h1>
-        <h2>Welcome To Our Website</h2>
-        <a href="/products/admin" class="btn-get-started scrollto">Login</a>
-    </div>
-</section><!-- End Hero -->
 
 <main id="main">
 
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
 
-            <div class="section-title" data-aos="fade-left">
-                <h2>Menu</h2>
-            </div>
-            <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-                <% products.map(item => { %>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                    <div >
-                        <img src="<%=item.image%>" class="img-fluid" alt="">
-                        <div><p>Name:<%=item.name%><p></div>
-                        <div><p>Price:<%=item.price%><p></div>
-                        <div><p>Quantity:<%=item.quantity%></p></div>
-                    </div>
-                </div>
-                <% }) %>
-            </div>
-        </div>
-    </section><!-- End Portfolio Section -->
-
-
-
-    <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
         <div class="container">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
-                    </form>
-                </div>
-            </div>
+
+            <br>
+            <br>
+            <form method="post" >
+
+                        <input type="text" name="name"  placeholder="Product Name" required>
+
+                        <input type="number"  name="price"  placeholder="Price" required>
+
+                        <input type="number" name="quantity"  placeholder="Quantity" required>
+
+                <br>
+
+                         <div><input type="hidden" name="image" id="image"></div>
+                <br>
+
+                         <input type="file" id="fileButton" onchange="uploadImage(event)">
+                <br>
+                <br>
+
+                <button>Submit</button>
+
+            </form>
+        </div>
+        </div>
 
         </div>
     </section><!-- End Contact Section -->
@@ -148,6 +115,57 @@
 <!-- Template Main JS File -->
 <script src="/assets/js/main.js"></script>
 
+
+<h1>Hello GFG</h1>
+<div id="imgDiv"></div>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyDeSYBPOlvPRvUp2lX1D34Cw6yQfoMhAvE",
+        authDomain: "menu-3d4f6.firebaseapp.com",
+        projectId: "menu-3d4f6",
+        storageBucket: "menu-3d4f6.appspot.com",
+        messagingSenderId: "842830118412",
+        appId: "1:842830118412:web:571e2bbef3ec55fc19f829",
+        measurementId: "G-9WF51PDKXT"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+<script type="text/javascript">
+    function uploadImage(e) {
+        let fbBucketName = 'images';
+        let uploader = document.getElementById('uploader');
+        let file = e.target.files[0];
+        let storageRef = firebase.storage().ref(`${fbBucketName}/${file.name}`);
+        let uploadTask = storageRef.put(file);
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+            function (snapshot) {
+                uploader.value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED:
+                        break;
+                    case firebase.storage.TaskState.RUNNING:
+                        break;
+                }
+            }, function (error) {
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        break;
+                    case 'storage/canceled':
+                        break;
+                    case 'storage/unknown':
+                        break;
+                }
+            }, function () {
+                let downloadURL = uploadTask.snapshot.downloadURL;
+                document.getElementById('imgDiv').innerHTML = `<img src="${downloadURL}" alt="" style="height:40px;width:40px">`
+                alert(downloadURL)
+                document.getElementById('image').value = downloadURL;
+            });
+    }
+</script>
 </body>
 
 </html>
